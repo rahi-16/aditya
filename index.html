@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:linear-gradient(135deg,#ff9a9e,#fad0c4,#fad0c4,#fbc2eb);
+height:100vh;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+color: brown;
+}
+
+.container{
+width:90%;
+max-width:800px;
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(12px);
+padding:40px;
+border-radius:25px;
+box-shadow:0 10px 30px rgba(0,0,0,.3);
+z-index:2;
+}
+
+h1{
+font-family:'Pacifico',cursive;
+font-size:40px;
+margin-bottom:20px;
+}
+
+h2{
+font-size:30px;
+margin-bottom:20px;
+}
+
+#timer{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+margin-top:20px;
+}
+
+.box{
+background:rgba(255,255,255,.25);
+padding:20px;
+border-radius:15px;
+min-width:100px;
+}
+
+.box span{
+display:block;
+font-size:42px;
+font-weight:bold;
+}
+
+.box p{
+margin-top:8px;
+font-size:18px;
+}
+
+#birthdayMessage{
+display:none;
+animation:fadeIn 2s;
+}
+
+#birthdayMessage h1{
+font-size:60px;
+color:#006400;
+}
+
+#birthdayMessage h2{
+font-size:45px;
+color:#ff004c;
+}
+
+#birthdayMessage p{
+font-size:22px;
+line-height:1;
+margin-top:20px;
+}
+
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:scale(.8);
+}
+to{
+opacity:1;
+transform:scale(1);
+}
+}
+
+.heart{
+position:absolute;
+font-size:20px;
+animation:float 8s linear infinite;
+opacity:.7;
+}
+
+@keyframes float{
+0%{
+transform:translateY(100vh) rotate(0deg);
+opacity:0;
+}
+20%{
+opacity:1;
+}
+100%{
+transform:translateY(-120vh) rotate(360deg);
+opacity:0;
+}
+}
+
+@media(max-width:600px){
+
+h1{
+font-size:36px;
+}
+
+.box{
+min-width:80px;
+}
+
+.box span{
+font-size:30px;
+}
+
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div id="countdown">
+
+<h1>❤️ Countdown to Your Birthday ❤️</h1>
+
+<h2>My Handsome Boyfriend</h2>
+
+<div id="timer">
+
+<div class="box">
+<span id="days">0</span>
+<p>Days</p>
+</div>
+
+<div class="box">
+<span id="hours">0</span>
+<p>Hours</p>
+</div>
+
+<div class="box">
+<span id="minutes">0</span>
+<p>Minutes</p>
+</div>
+
+<div class="box">
+<span id="seconds">0</span>
+<p>Seconds</p>
+</div>
+
+</div>
+
+</div>
+
+<div id="birthdayMessage">
+
+<h1>🎉 Happy Birthday My Love ADITYA! 🎂</h1>
+
+<h2>❤️ I Love You ❤️</h2>
+
+<p>
+
+You are the sweetest, kindest, and most amazing person I've ever met.
+<br><br>
+
+Thank you for always making me smile, supporting me, and filling my life with happiness.
+
+<br><br>
+
+You are incredibly handsome, caring, funny, smart, and truly one of a kind.
+
+<br><br>
+
+I hope this year brings you endless happiness, success, laughter, and everything your heart desires.
+
+<br><br>
+
+May your smile always shine as brightly as it does today.
+
+<br><br>
+
+Happy Birthday, my love! ❤️🎂✨
+
+</p>
+
+</div>
+
+</div>
+
+<script>
+
+// Change the year if needed.
+// This is set for 30 July at exactly 12:00 AM.
+//const targetDate = new Date("July 30, 2026 00:00:00").getTime();
+const targetDate = new Date(Date.now() + 15000).getTime();
+
+const timer = setInterval(function(){
+
+const now = new Date().getTime();
+
+const distance = targetDate - now;
+
+if(distance <= 0){
+
+    clearInterval(timer);
+
+    document.getElementById("countdown").style.display = "none";
+    document.getElementById("birthdayMessage").style.display = "block";
+
+    // Play Birthday Music
+    const music = document.getElementById("birthdayMusic");
+    music.play().catch(error => {
+        console.log("Autoplay blocked:", error);
+    });
+
+    createHearts();
+
+    return;
+
+}
+const days=Math.floor(distance/(1000*60*60*24));
+
+const hours=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+
+const minutes=Math.floor((distance%(1000*60*60))/(1000*60));
+
+const seconds=Math.floor((distance%(1000*60))/1000);
+
+document.getElementById("days").innerHTML=days;
+document.getElementById("hours").innerHTML=hours;
+document.getElementById("minutes").innerHTML=minutes;
+document.getElementById("seconds").innerHTML=seconds;
+
+},1000);
+
+function createHearts(){
+
+setInterval(()=>{
+
+const heart=document.createElement("div");
+
+heart.classList.add("heart");
+
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.fontSize=(20+Math.random()*30)+"px";
+
+heart.style.animationDuration=(5+Math.random()*5)+"s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},10000);
+
+},300);
+
+}
+
+</script>
+<!-- Birthday Music -->
+<audio id="birthdayMusic" loop>
+    <source src="Dariya.mp3" type="audio/mpeg">
+</audio>
+</body>
+</html>	
